@@ -7,7 +7,7 @@
 
 > During sales transaction they record the product sold to every customer. They record the quantity and the unit price of every item, as indicated in the official receipt.
 
-> For every customer they record their name, address and contact number.
+> For every customer they record their name, address and contact number..
 
 #### Download and Installation
 - 
