@@ -13,15 +13,15 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <input type="hidden" name="Supplier_ID" value="<?php echo $row['Supplier_ID']?>"/>
-                        <label class="col-form-label">Full Name:</label>
+                        <label class="col-form-label">Company Name:</label>
                         <input type="text" class="form-control" name="upsuppComp" value="<?php echo $row['Supp_Company']?>" required="required">
                     </div>
                     <div class="form-group">
-                        <label class="col-form-label">Address:</label>
+                        <label class="col-form-label">Contact Number:</label>
                         <input type="text" class="form-control " name="upsuppContact" value="<?php echo $row['Supp_Contact_No']?>" required="required">
                     </div>
                     <div class="form-group">
-                        <label class="col-form-label">Contact Number:</label>
+                        <label class="col-form-label">Address:</label>
                         <input type="text" class="form-control " name="upsuppAddress" value="<?php echo $row['Supp_address']?>" required="required">
                     </div>
                 </div>

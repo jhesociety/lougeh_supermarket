@@ -1,6 +1,7 @@
 <?php
+include 'config_connect.php';
 
-include("config_connect.php");
+
 ?>
 
 
@@ -11,9 +12,9 @@ include("config_connect.php");
 
     <!-- Custom fonts for this template-->
     <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link
-            href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-            rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+          rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Libre Barcode 39' rel='stylesheet'>
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
@@ -24,6 +25,19 @@ include("config_connect.php");
 </head>
 
 <body id="page-top">
+
+<?php
+if (isset($_SESSION['message'])): ?>
+    <div class="alert alert-<?$_SESSION['msg_type']?>">
+
+        <?php
+        echo $_SESSION['message'];
+        unset($_SESSION['message']);
+
+        ?>
+
+    </div>
+<?php endif ?>
 
 <!-- Page Wrapper -->
 <div id="wrapper">
@@ -69,23 +83,6 @@ include("config_connect.php");
                     <a class="collapse-item" href="manage_products.php">Products</a>
                     <a class="collapse-item" href="manage_customers.php">Customers</a>
                     <a class="collapse-item" href="manage_suppliers.php">Suppliers</a>
-                </div>
-            </div>
-        </li>
-
-        <!-- Nav Item - Utilities Collapse Menu -->
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-               aria-expanded="true" aria-controls="collapseUtilities">
-                <i class="fas fa-fw fa-wrench"></i>
-                <span>Utilities</span>
-            </a>
-            <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-                 data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Custom Utilities:</h6>
-                    <a class="collapse-item" href="utilities-color.html">Colors</a>
-                    <a class="collapse-item" href="utilities-border.html">Borders</a>
                 </div>
             </div>
         </li>
@@ -137,46 +134,59 @@ include("config_connect.php");
             <div class="container-fluid">
 
                 <!-- Page Heading -->
-                <h1 class="h3 mb-2 text-gray-800">Dashboard</h1>
-                <p class="mb-4">Sales of sssssssssssssssss</p>
+                <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    <h1 class="h3 mb-0 text-gray-800">Sales Dashboard</h1>
+                </div>
 
-                <!-- DataTales Example -->
+                <!-- DataTables -->
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Sales</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">List of Sales</h6>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
                                 <tr>
+                                    <th>Sales ID</th>
+                                    <th>Product Decriptions</th>
                                     <th>Customer Name</th>
-                                    <th>Customer Name</th>
-                                    <th>Andress</th>
-                                    <th>Number</th>
+                                    <th>Sold Quantity</th>
+                                    <th>Total Sost</th>
+                                    <th>Date</th>
+                                    <th colspan="1">Action</th>
                                 </tr>
                                 </thead>
-                                <tfoot>
-                                <tr>
-                                    <th>Customer Name</th>
-                                    <th>Customer Name</th>
-                                    <th>Andress</th>
-                                    <th>Number</th>
-                                </tr>
-                                </tfoot>
                                 <tbody>
                                 <?php
-
-                                $sql = "SELECT * from Customer_tbl";
-                                $result = $conn->query($sql);
-                                if ($result->num_rows > 0) {
-                                    while ($row = $result->fetch_assoc()) {
-                                        echo "</td><td>" . $row["Cust_Name"] . "</td><td>" . $row["Cust_Address"] . "</td><td>" . $row["Contact_Number"] . "</td></tr>";
-                                    }
-                                } else {
-                                    echo "No Results";
+                                include('config_connect.php');
+                                if ($conn->connect_error) {
+                                    die("Connection Failed" . $conn->connect_error);
                                 }
-                                $conn->close();
+                                $sql = "SELECT sales_tbl.`Sales_ID`,product_tbl.`Prod_Desc`, customer_tbl.`Cust_Name`,sales_tbl.`Sold_Qty`,sales_tbl.`Total_Sold`,sales_tbl.`Sales_Date`  FROM sales_tbl 
+INNER JOIN product_tbl ON sales_tbl.`Product_ID` = product_tbl.`product_id`
+INNER JOIN customer_tbl ON sales_tbl.`Customer_ID` = customer_tbl.`Customer_id`";
+                                $result = $conn->query($sql); ?>
+
+                                <?php while ($row = $result->fetch_assoc()): ?>
+                                    <tr>
+                                        <td><?php echo $row['Sales_ID']; ?></td>
+                                        <td><?php echo $row['Prod_Desc']; ?></td>
+                                        <td><?php echo $row['Cust_Name']; ?></td>
+                                        <td><?php echo $row['Sold_Qty']; ?></td>
+                                        <td><?php echo $row['Total_Sold']; ?></td>
+                                        <td><?php echo $row['Sales_Date']; ?></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-info btn-block" data-toggle="modal"
+                                                    type="button"
+                                                    data-target="#UpdateModal<?php echo $row['Sales_ID'] ?>">
+                                                <span class="fa fa-wrench fa-sm"></span> Edit
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <?php
+                                    include 'modal_product.php';
+                                endwhile;
                                 ?>
                                 </tbody>
                             </table>
@@ -212,24 +222,78 @@ include("config_connect.php");
 </a>
 
 <!-- Logout Modal-->
-<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+<div class="modal fade" id="addProductModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
      aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-primary" href="login.html">Logout</a>
-            </div>
+            <? require_once 'addProduct.php'?>
+            <form action="addProduct.php" method="POST" >
+                <div class="modal-header">
+
+                    <h5 class="modal-title" id="modelTitle">Add Customer</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <?php
+                        if ($conn -> connect_error){
+                            die("Connection Failed" . $conn->connect_error);
+                        }
+                        $sqlDropDown = "SELECT * FROM supplier_tbl";
+                        $resultDropDown = $conn -> query($sqlDropDown); ?>
+
+                        <label class="col-form-label">Supplier:</label>
+                        <select name="suppID" class="form-control dropdown-toggle" >
+
+                            <option value="" disabled>Choose option</option>
+                            <?php
+                            while($row = $resultDropDown->fetch_assoc())
+                            {
+                                $suppID = $row['Supplier_ID'];
+                                $suppComp = $row['Supp_Company'];
+
+                                echo "<option value='Supplier_ID'>$suppComp</option>";
+                            }
+                            ?>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Product Name:</label>
+                        <input type="text" class="form-control " name="prodName" required="required">
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Quantity:</label>
+                        <input type="number" class="form-control " name="prodQuan" required="required">
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Price:</label>
+                        <input type="number" class="form-control " name="prodPrice" required="required">
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Date:</label>
+                        <input type="date" class="form-control " name="prodDate" required="required">
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Barcode:</label>
+                        <input type="text" class="form-control " name="prodCode" required="required">
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-danger" type="button" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" name="save" >Add</button>
+
+                </div>
+            </form>
         </div>
     </div>
 </div>
+
+
+
 
 <!-- Bootstrap core JavaScript-->
 <script src="vendor/jquery/jquery.min.js"></script>

@@ -13,7 +13,7 @@ if (isset($_POST['save'])) {
     $prodDate = $_POST['prodDate'];
     $prodCode = $_POST['prodCode'];
 
-    $sqladdProd1 = "INSERT INTO product_tbl (Supplier_ID, Prod_Desc, Prod_Qty , Prod_Cost , Prod_Date, Prod_Code) VALUES ('$selectedSupp','$prodName','$prodQuan','$prodPrice','$prodDate','$prodCode')";
+    $sqladdProd1 = "INSERT INTO product_tbl (Supplier_ID, Prod_Desc, Prod_Qty , Prod_Cost , Prod_Date, Prod_Code) VALUES ('1','$prodName','$prodQuan','$prodPrice','$prodDate','$prodCode')";
 
     $conn->query($sqladdProd1) or die(mysqli_error());
 
