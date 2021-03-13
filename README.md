@@ -15,3 +15,4 @@
 - Exequte the Query name database.sql
 - Edit file config_connect.php for SQL Database Connection
 - Goto your web browser for localhost/link and your Done
+![image](https://user-images.githubusercontent.com/11284978/111023145-47929a80-8412-11eb-81ac-ffcb073b9383.png)
