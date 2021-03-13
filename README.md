@@ -10,7 +10,7 @@
 > For every customer they record their name, address and contact number..
 
 #### Download and Installation
-- 
-- 
-- 
+- Download repository extact it to your htdocs if you are using xammp
+- Exequte the Query name database.sql
+- Edit file config_connect.php for SQL Connection
 - 
