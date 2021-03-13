@@ -14,4 +14,4 @@
 - Download repository extact it to your htdocs if you are using xammp
 - Exequte the Query name database.sql
 - Edit file config_connect.php for SQL Database Connection
-- and your Done
+- Goto your web browser for localhost/link and your Done
