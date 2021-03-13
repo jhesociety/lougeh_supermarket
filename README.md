@@ -13,5 +13,5 @@
 **Download and Installation**
 - Download repository extact it to your htdocs if you are using xammp
 - Exequte the Query name database.sql
-- Edit file config_connect.php for SQL Connection
-- 
+- Edit file config_connect.php for SQL Database Connection
+- and your Done
