@@ -180,7 +180,7 @@ INNER JOIN customer_tbl ON sales_tbl.`Customer_ID` = customer_tbl.`Customer_id`"
                                             <button class="btn btn-sm btn-info btn-block" data-toggle="modal"
                                                     type="button"
                                                     data-target="#UpdateModal<?php echo $row['Sales_ID'] ?>">
-                                                <span class="fa fa-wrench fa-sm"></span> Edit
+                                                <span class="fa fa-search fa-sm"></span> View
                                             </button>
                                         </td>
                                     </tr>

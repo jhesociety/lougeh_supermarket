@@ -28,15 +28,15 @@
                     <div class="form-group">
                         <label class="col-form-label">Date:</label>
                         <input type="date" class="form-control " name="prodDate" value="<?php echo $row['Prod_Date']?>" disabled>
+
+
                     </div>
-                    <div class="form-group" style="text-align: justify">
-                        <label style="font-family: 'Libre Barcode 39'; font-size: 100px;alignment: justify">            <?php echo $row['Prod_Code']?></label>
+                    <div class="form-group">
+
                         <input type="text" class="form-control " name="prodCode" value="BARCODE: <?php echo $row['Prod_Code']?>" disabled>
+                        <label style="font-family: 'Libre Barcode 39'; font-size: 100px;text-align: justify">            <?php echo $row['Prod_Code']?></label>
+
                     </div>
-                </div>
-                <div class="modal-footer">
-
-
                 </div>
                 </form>
             </div>

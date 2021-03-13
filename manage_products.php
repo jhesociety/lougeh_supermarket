@@ -251,7 +251,7 @@ INNER JOIN supplier_tbl ON product_tbl.Supplier_ID = supplier_tbl.Supplier_ID";
                         <label class="col-form-label">Supplier:</label>
                         <select name="suppID" class="form-control dropdown-toggle" >
 
-                            <option value="" disabled>Choose option</option>
+                            <option value="" disabled selected>Choose option</option>
                             <?php
                             while($row = $resultDropDown->fetch_assoc())
                             {
