@@ -183,7 +183,7 @@ INNER JOIN supplier_tbl ON product_tbl.Supplier_ID = supplier_tbl.Supplier_ID";
                                                   <button class="btn btn-sm btn-info btn-block" data-toggle="modal"
                                                           type="button"
                                                           data-target="#UpdateModal<?php echo $row['product_id'] ?>">
-                                                      <span class="fa fa-wrench fa-sm"></span> Edit
+                                                      <span class="fa fa-search fa-sm"></span> View
                                                   </button>
                                               </td>
                                           </tr>

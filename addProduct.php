@@ -27,14 +27,20 @@ if (isset($_POST['save'])) {
 
 if (isset($_GET['edit'])){
 	$id = $_GET['edit'];
-	$updateSupp = "SELECT * FROM product_tbl WHERE product_id=$id";
-	$result = $conn->query($updateSupp) or die(mysqli_error());
+	$updateProd = "SELECT * FROM product_tbl WHERE product_id=$id";
+	$result = $conn->query($updateProd) or die(mysqli_error());
 
 	if (count($result)==1) {
 		$row = $result->fetch_array();
-        $sName = $row['upsuppComp'];
-        $suppNum = $row['upsuppContact'];
-        $suppAdd = $row['upsuppAddress'];
+        $selectedSupp = $row['suppID'];
+        $selectedSupp = $row['suppID'];
+        $prodName = $row['prodName'];
+        $prodQuan = $row['prodQuan'];
+        $prodPrice = $row['prodPrice'];
+        $prodDate = $row['prodDate'];
+        $prodCode = $row['prodCode'];
+
+
 	}
 
 }
