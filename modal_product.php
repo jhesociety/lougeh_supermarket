@@ -31,10 +31,10 @@
 
 
                     </div>
-                    <div class="form-group">
+                    <div class="form-group text-center">
 
                         <input type="text" class="form-control " name="prodCode" value="BARCODE: <?php echo $row['Prod_Code']?>" disabled>
-                        <label style="font-family: 'Libre Barcode 39'; font-size: 100px;text-align: justify">            <?php echo $row['Prod_Code']?></label>
+                        <label style="font-family: 'Libre Barcode 39'; font-size: 100px;"><?php echo $row['Prod_Code']?></label>
 
                     </div>
                 </div>
