@@ -1,3 +1,4 @@
+
 ### The Lou Geh Supermarket
 
 ###### Problem
@@ -12,8 +13,16 @@
 ## SETUP GUIDE
 **Download and Installation**
 - Download repository extact it to your htdocs if you are using xammp
-- Exequte the Query name database.sql
+- Exequte the Query name database.sql   
+
+>     // SQL Database Configuration   
+>     $servername = "localhost"; // Server or host Name Ex. localhost  
+>     $username = "root"; // SQL User  
+>     $password = ""; // SQL Password  
+>     $dbname = "system1"; // SQL Database Name
+
 - Edit file config_connect.php for SQL Database Connection
+  
 - Goto your web browser for localhost/link and your Done
 
 ## PREVIEW
